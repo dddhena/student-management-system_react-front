@@ -8,10 +8,12 @@ export default function StudentAssignments() {
   const headers = { Authorization: `Bearer ${token}` };
 
   useEffect(() => {
-    axios.get('http://127.0.0.1:8000/api/student/assignments', { headers })
-      .then(res => setAssignments(res.data))
-      .catch(err => console.error('❌ Failed to fetch assignments:', err));
-  }, []);
+  if (!token) return;
+  axios.get('http://127.0.0.1:8000/api/student/assignments', { headers })
+    .then(res => setAssignments(Array.isArray(res.data) ? res.data : []))
+    .catch(err => console.error('❌ Failed to fetch assignments:', err));
+}, [token]);
+
 
   const handleFileChange = (assignmentId, file) => {
     setSelectedFile(prev => ({ ...prev, [assignmentId]: file }));
