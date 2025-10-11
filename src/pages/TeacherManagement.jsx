@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import '../styles/TeacherManagement.css';
 
 export default function TeacherManagement() {
   const [form, setForm] = useState({ full_name: '', subject: '', phone: '', email: '' });
@@ -61,20 +62,54 @@ export default function TeacherManagement() {
   };
 
   return (
-    <div style={{ maxWidth: '700px', margin: 'auto' }}>
-      <h2>Teacher Management</h2>
+    <div className="teacher-management-container">
+      <h2 className="teacher-title">👩‍🏫 Teacher Management</h2>
 
-      <form onSubmit={handleSubmit}>
-        <input name="full_name" placeholder="Full Name" value={form.full_name} onChange={handleChange} required />
-        <input name="subject" placeholder="Main Subject" value={form.subject} onChange={handleChange} />
-        <input name="phone" placeholder="Phone" value={form.phone} onChange={handleChange} />
-        <input name="email" placeholder="Email" value={form.email} onChange={handleChange} />
-        <button type="submit">{editingId ? 'Update' : 'Create'} Teacher</button>
-        {editingId && <button type="button" onClick={() => { setForm({ full_name: '', subject: '', phone: '', email: '' }); setEditingId(null); }}>Cancel</button>}
+      <form className="teacher-form" onSubmit={handleSubmit}>
+        <input
+          name="full_name"
+          placeholder="Full Name"
+          value={form.full_name}
+          onChange={handleChange}
+          required
+        />
+        <input
+          name="subject"
+          placeholder="Main Subject"
+          value={form.subject}
+          onChange={handleChange}
+        />
+        <input
+          name="phone"
+          placeholder="Phone"
+          value={form.phone}
+          onChange={handleChange}
+        />
+        <input
+          name="email"
+          placeholder="Email"
+          value={form.email}
+          onChange={handleChange}
+        />
+        <button type="submit" className="submit-button">
+          {editingId ? 'Update' : 'Create'} Teacher
+        </button>
+        {editingId && (
+          <button
+            type="button"
+            className="cancel-button"
+            onClick={() => {
+              setForm({ full_name: '', subject: '', phone: '', email: '' });
+              setEditingId(null);
+            }}
+          >
+            Cancel
+          </button>
+        )}
       </form>
 
-      <h3 style={{ marginTop: '2rem' }}>Teacher List</h3>
-      <table border="1" cellPadding="8" style={{ width: '100%' }}>
+      <h3 className="teacher-list-title">📋 Teacher List</h3>
+      <table className="teacher-table">
         <thead>
           <tr>
             <th>Name</th>
@@ -92,8 +127,8 @@ export default function TeacherManagement() {
               <td>{t.email || '—'}</td>
               <td>{t.phone || '—'}</td>
               <td>
-                <button onClick={() => handleEdit(t)}>Edit</button>
-                <button onClick={() => handleDelete(t.id)} style={{ marginLeft: '0.5rem', color: 'red' }}>Delete</button>
+                <button className="edit-button" onClick={() => handleEdit(t)}>Edit</button>
+                <button className="delete-button" onClick={() => handleDelete(t.id)}>Delete</button>
               </td>
             </tr>
           ))}

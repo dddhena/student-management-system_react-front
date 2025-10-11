@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import './Login.css';
+import '../styles/login.css';
 
 export default function Login() {
   const [username, setUsername] = useState('');
@@ -31,6 +31,7 @@ export default function Login() {
   };
 
   return (
+  <div className="login-page">
     <div className="login-wrapper">
       <div className="login-glass">
         <h2>🎓 Student Management Login</h2>
@@ -57,5 +58,7 @@ export default function Login() {
         </form>
       </div>
     </div>
-  );
+  </div>
+);
+
 }

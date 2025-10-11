@@ -1,0 +1,42 @@
+.assign-subject-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, #fefefe, #e0f7ff);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.assign-title {
+  text-align: center;
+  color: #1f3b5c;
+  margin-bottom: 1.5rem;
+}
+
+.assign-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.assign-select {
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.assign-button {
+  padding: 0.6rem 1.2rem;
+  background-color: #1f3b5c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.assign-button:hover {
+  background-color: #2c4a6e;
+}

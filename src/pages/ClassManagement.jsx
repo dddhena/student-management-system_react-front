@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import '../styles/ClassManagement.css';
 
 export default function ClassManagement() {
   const [form, setForm] = useState({ name: '', teacher_id: '' });
@@ -16,7 +17,6 @@ export default function ClassManagement() {
       axios.get('http://127.0.0.1:8000/api/teachers', { headers }),
     ]);
 
-    // ✅ Defensive check: ensure array
     setClasses(Array.isArray(classRes.data) ? classRes.data : []);
     setTeachers(Array.isArray(teacherRes.data) ? teacherRes.data : []);
   };
@@ -65,10 +65,10 @@ export default function ClassManagement() {
   };
 
   return (
-    <div style={{ maxWidth: '700px', margin: 'auto' }}>
-      <h2>Class Management</h2>
+    <div className="class-management-container">
+      <h2 className="class-title">🏫 Class Management</h2>
 
-      <form onSubmit={handleSubmit}>
+      <form className="class-form" onSubmit={handleSubmit}>
         <input
           name="name"
           placeholder="Class Name (e.g. Grade 9A)"
@@ -84,10 +84,13 @@ export default function ClassManagement() {
             </option>
           ))}
         </select>
-        <button type="submit">{editingId ? 'Update' : 'Create'} Class</button>
+        <button type="submit" className="submit-button">
+          {editingId ? 'Update' : 'Create'} Class
+        </button>
         {editingId && (
           <button
             type="button"
+            className="cancel-button"
             onClick={() => {
               setForm({ name: '', teacher_id: '' });
               setEditingId(null);
@@ -98,8 +101,8 @@ export default function ClassManagement() {
         )}
       </form>
 
-      <h3 style={{ marginTop: '2rem' }}>Class List</h3>
-      <table border="1" cellPadding="8" style={{ width: '100%' }}>
+      <h3 className="class-list-title">📋 Class List</h3>
+      <table className="class-table">
         <thead>
           <tr>
             <th>Name</th>
@@ -114,13 +117,8 @@ export default function ClassManagement() {
                 <td>{cls.name}</td>
                 <td>{teachers.find(t => t.id === cls.teacher_id)?.full_name || '—'}</td>
                 <td>
-                  <button onClick={() => handleEdit(cls)}>Edit</button>
-                  <button
-                    onClick={() => handleDelete(cls.id)}
-                    style={{ marginLeft: '0.5rem', color: 'red' }}
-                  >
-                    Delete
-                  </button>
+                  <button className="edit-button" onClick={() => handleEdit(cls)}>Edit</button>
+                  <button className="delete-button" onClick={() => handleDelete(cls.id)}>Delete</button>
                 </td>
               </tr>
             ))}

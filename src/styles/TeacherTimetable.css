@@ -1,0 +1,39 @@
+.timetable-view-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, #fefefe, #e0f7ff);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Inter', sans-serif;
+}
+
+.timetable-view-container h2 {
+  text-align: center;
+  color: #1f3b5c;
+  margin-bottom: 1.5rem;
+}
+
+.timetable-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.timetable-table th,
+.timetable-table td {
+  padding: 0.8rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.timetable-table th {
+  background-color: #e6f0ff;
+  color: #1f3b5c;
+}
+
+.timetable-table tr:hover {
+  background-color: #f9f9f9;
+}

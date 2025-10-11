@@ -1,0 +1,187 @@
+
+/* General container styling */
+.admissions-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f0 100%);
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Titles */
+.admissions-title, .table-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1e40af; /* Ethiopian blue */
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Loading and Error States */
+.loading-text {
+  text-align: center;
+  color: #4b5563;
+  font-size: 1rem;
+  animation: pulse 1.5s infinite;
+}
+
+.error-text {
+  text-align: center;
+  color: #dc2626;
+  background-color: #fee2e2;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  margin-bottom: 1rem;
+}
+
+/* Form Styling */
+.admissions-form {
+  background: linear-gradient(135deg, #f5f7fa 0%, #75a8f0 100%);
+  padding: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .admissions-form {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 0.25rem;
+}
+
+.form-input, .form-select {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus, .form-select:focus {
+  outline: none;
+  border-color: #1e40af;
+  box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.2);
+}
+
+.form-select:disabled {
+  background-color: #f3f4f6;
+  cursor: not-allowed;
+}
+
+.submit-button {
+  background-color: #15803d; /* Ethiopian green */
+  color: #ffffff;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.submit-button:hover:not(:disabled) {
+  background-color: #166534;
+}
+
+.submit-button:disabled {
+  background-color: #9ca3af;
+  cursor: not-allowed;
+}
+
+/* Table Styling */
+.table-container {
+  overflow-x: auto;
+}
+
+.admissions-table {
+  width: 100%;
+  background-color: #ffffff;
+  border-collapse: collapse;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.admissions-table th, .admissions-table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.admissions-table th {
+  background-color: #dbeafe;
+  font-weight: 600;
+  color: #1e40af;
+}
+
+.admissions-table tr:hover {
+  background-color: #f9fafb;
+}
+
+.no-data {
+  text-align: center;
+  color: #6b7280;
+  padding: 1rem;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.edit-button, .delete-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.edit-button {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+.edit-button:hover {
+  background-color: #2563eb;
+}
+
+.delete-button {
+  background-color: #dc2626;
+  color: #ffffff;
+}
+
+.delete-button:hover {
+  background-color: #b91c1c;
+}
+
+/* Animation for loading state */
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}

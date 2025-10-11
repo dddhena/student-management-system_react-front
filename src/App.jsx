@@ -19,59 +19,67 @@ import TeacherAssignments from './pages/TeacherAssignments';
 import StudentAssignments from './pages/StudentAssignments';
 import TeacherSubmissions from './pages/TeacherSubmissions';
 import StudentAttendance from './pages/StudentAttendance';
+import CreateTimetable from './pages/CreateTimetable';
+import StudentSubjects from './pages/StudentSubjects';
+import LeaveRequestForm from './pages/LeaveRequestForm'; 
+import LeaveRequestList from './pages/LeaveRequestList';
+import TeacherClassList from './pages/TeacherClassList';
+import ParentChildren from './pages/ParentChildren';
+
+
+
+
 
 
 function App() {
   const token = localStorage.getItem('token');
-  const role = localStorage.getItem('role');
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route
-          path="/dashboard/*"
-          element={token ? <Dashboard /> : <Navigate to="/" />}
-        >
-          {role === 'admin' && (
-            <>
-              <Route path="admin/admissions" element={<Admissions />} />
-              <Route path="admin/teachers" element={<TeacherSubjectClassManagement />} />
-              <Route path="admin/teachers/create" element={<TeacherManagement />} />
-              <Route path="admin/subjects/create" element={<SubjectManagement />} />
-              <Route path="admin/classes/create" element={<ClassManagement />} />
-              <Route path="admin/assign-subject" element={<AssignSubject />} />
-              <Route path="admin/teachers/update/:id" element={<UpdateTeacher />} />
-              <Route path="admin/subjects/update/:id" element={<UpdateSubject />} />
-              <Route path="admin/classes/update/:id" element={<UpdateClass />} />
-            </>
-          )}
+        <Route path="/dashboard/*" element={token ? <Dashboard /> : <Navigate to="/" />}>
+          {/* ✅ Admin routes */}
+          <Route path="admin/admissions" element={<Admissions />} />
+          <Route path="admin/teachers" element={<TeacherSubjectClassManagement />} />
+          <Route path="admin/teachers/create" element={<TeacherManagement />} />
+          <Route path="admin/subjects/create" element={<SubjectManagement />} />
+          <Route path="admin/classes/create" element={<ClassManagement />} />
+          <Route path="admin/assign-subject" element={<AssignSubject />} />
+          <Route path="admin/teachers/update/:id" element={<UpdateTeacher />} />
+          <Route path="admin/subjects/update/:id" element={<UpdateSubject />} />
+          <Route path="admin/classes/update/:id" element={<UpdateClass />} />
+          <Route path="admin/timetable/create" element={<CreateTimetable />} />
+          <Route path="admin/leave-requests" element={<LeaveRequestList role="admin" />} />
 
-          {role === 'student' && (
-            <>
-              <Route path="student/subjects" element={<div>📚 Student Subjects Page</div>} />
-              <Route path="student/assignments" element={<StudentAssignments />} />
-              <Route path="student/grades/:studentId" element={<StudentGradeHistory />} />
-              <Route path="student/attendance" element={<StudentAttendance />} />
-            </>
-          )}
 
-          {role === 'teacher' && (
-            <>
-              <Route path="teacher/profile" element={<TeacherProfile />} />
-              <Route path="teacher/timetable" element={<TeacherTimetable />} />
-              <Route path="teacher/attendance" element={<TeacherAttendance />} />
-              <Route path="teacher/grades" element={<TeacherGrades />} />
-              <Route path="student/grades/:studentId" element={<StudentGradeHistory />} />
-              <Route path="teacher/assignments" element={<TeacherAssignments />} />
-              <Route path="teacher/submissions" element={<TeacherSubmissions />} />
-            </>
-          )}
+          {/* ✅ Student routes */}
+          <Route path="student/subjects" element={<StudentSubjects />} />
+          <Route path="student/assignments" element={<StudentAssignments />} />
+          <Route path="student/grades/:studentId" element={<StudentGradeHistory />} />
+          <Route path="student/attendance" element={<StudentAttendance />} />
+          <Route path="student/leave/apply" element={<LeaveRequestForm />} />
+          <Route path="student/leave/requests" element={<LeaveRequestList role="student" />} />
+
+          {/* ✅ Teacher routes */}
+          <Route path="teacher/profile" element={<TeacherProfile />} />
+          <Route path="teacher/timetable" element={<TeacherTimetable />} />
+          <Route path="teacher/attendance" element={<TeacherAttendance />} />
+          <Route path="teacher/grades" element={<TeacherGrades />} />
+          <Route path="teacher/assignments" element={<TeacherAssignments />} />
+          <Route path="teacher/submissions" element={<TeacherSubmissions />} />
+          <Route path="student/grades/:studentId" element={<StudentGradeHistory />} />
+          <Route path="teacher/leave-requests" element={<LeaveRequestList role="teacher" />} />
+          <Route path="teacher/classes" element={<TeacherClassList />} />
+
+           {/* ✅ Parent routes */}
+          <Route path="parent/children" element={<ParentChildren />} />
+
+
         </Route>
       </Routes>
     </BrowserRouter>
   );
 }
-
 
 export default App;

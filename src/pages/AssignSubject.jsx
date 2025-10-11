@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import '../styles/AssignSubject.css';
 
 export default function AssignSubject() {
   const [teachers, setTeachers] = useState([]);
@@ -20,9 +21,11 @@ export default function AssignSubject() {
   const handleAssign = async () => {
     if (!selectedTeacherId || !selectedSubjectId) return alert('Select both teacher and subject');
     try {
-      await axios.post(`http://127.0.0.1:8000/api/teachers/${selectedTeacherId}/assign-subject`, {
-        subject_id: selectedSubjectId,
-      }, { headers });
+      await axios.post(
+        `http://127.0.0.1:8000/api/teachers/${selectedTeacherId}/assign-subject`,
+        { subject_id: selectedSubjectId },
+        { headers }
+      );
       alert('Subject assigned successfully');
     } catch (err) {
       alert('Assignment failed');
@@ -30,17 +33,37 @@ export default function AssignSubject() {
   };
 
   return (
-    <div>
-      <h3>Assign Subject to Teacher</h3>
-      <select value={selectedTeacherId} onChange={e => setSelectedTeacherId(e.target.value)}>
-        <option value="">Select Teacher</option>
-        {teachers.map(t => <option key={t.id} value={t.id}>{t.full_name}</option>)}
-      </select>
-      <select value={selectedSubjectId} onChange={e => setSelectedSubjectId(e.target.value)}>
-        <option value="">Select Subject</option>
-        {subjects.map(s => <option key={s.id} value={s.id}>{s.name}</option>)}
-      </select>
-      <button onClick={handleAssign}>Assign Subject</button>
+    <div className="assign-subject-container">
+      <h3 className="assign-title">📘 Assign Subject to Teacher</h3>
+      <div className="assign-form">
+        <select
+          value={selectedTeacherId}
+          onChange={e => setSelectedTeacherId(e.target.value)}
+          className="assign-select"
+        >
+          <option value="">Select Teacher</option>
+          {teachers.map(t => (
+            <option key={t.id} value={t.id}>
+              {t.full_name}
+            </option>
+          ))}
+        </select>
+        <select
+          value={selectedSubjectId}
+          onChange={e => setSelectedSubjectId(e.target.value)}
+          className="assign-select"
+        >
+          <option value="">Select Subject</option>
+          {subjects.map(s => (
+            <option key={s.id} value={s.id}>
+              {s.name}
+            </option>
+          ))}
+        </select>
+        <button className="assign-button" onClick={handleAssign}>
+          Assign Subject
+        </button>
+      </div>
     </div>
   );
 }

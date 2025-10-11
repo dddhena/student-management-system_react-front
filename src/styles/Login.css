@@ -1,0 +1,240 @@
+/* Full height and clean font */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #e9b610, #3dc9c9);
+}
+
+/* Centered layout using Flexbox */
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 2rem;
+}
+
+/* Glassmorphism card */
+.login-glass {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+/* Heading and subtext */
+.login-glass h2 {
+  margin-bottom: 0.5rem;
+  font-size: 1.8rem;
+  color: #3f4a66;
+}
+.login-page {
+  height: 100vh;
+}
+
+.login-subtext {
+  margin-bottom: 2rem;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+/* Inputs */
+.login-input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: #fff;
+  transition: border 0.3s ease;
+}
+
+.login-input:focus {
+  border-color: #7e8288;
+  outline: none;
+}
+
+/* Button */
+.login-button {
+  width: 100%;
+  padding: 0.75rem;
+  background: #293549;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.login-button:hover {
+  background: #141516;
+}
+
+/* Error */
+.login-error {
+  margin-top: 1rem;
+  color: #dc2626;
+  background: #fee2e2;
+  padding: 0.5rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive tweak for short screens */
+@media (max-height: 600px) {
+  .login-wrapper {
+    padding-top: 2rem;
+  }
+}
+
+/* ManageAdmissions.css */
+.admissions-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e9f0 100%);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  font-family: 'Inter', sans-serif;
+}
+
+.admissions-title {
+  font-size: 2rem;
+  color: #2c3e50;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.edit-form {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.edit-form h3 {
+  width: 100%;
+  font-size: 1.5rem;
+  color: #34495e;
+  margin-bottom: 1rem;
+}
+
+.edit-form input,
+.edit-form select {
+  flex: 1 1 200px;
+  padding: 0.75rem;
+  border: 1px solid #d1d9e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.edit-form input:focus,
+.edit-form select:focus {
+  outline: none;
+  border-color: #3498db;
+  box-shadow: 0 0 8px rgba(52, 152, 219, 0.2);
+}
+
+.update-button {
+  background: #3498db;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.update-button:hover {
+  background: #2980b9;
+  transform: translateY(-2px);
+}
+
+.admissions-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.admissions-table th,
+.admissions-table td {
+  padding: 1rem;
+  text-align: left;
+  font-size: 0.95rem;
+}
+
+.admissions-table th {
+  background: #3498db;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.admissions-table tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+.admissions-table tr:hover {
+  background: #e6f3ff;
+  transition: background 0.2s ease;
+}
+
+.edit-button,
+.delete-button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-right: 0.5rem;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.edit-button {
+  background: #2ecc71;
+  color: white;
+}
+
+.edit-button:hover {
+  background: #27ae60;
+  transform: translateY(-2px);
+}
+
+.delete-button {
+  background: #e74c3c;
+  color: white;
+}
+
+.delete-button:hover {
+  background: #c0392b;
+  transform: translateY(-2px);
+}

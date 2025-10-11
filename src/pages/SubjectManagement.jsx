@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import '../styles/SubjectManagement.css';
 
 export default function SubjectManagement() {
   const [form, setForm] = useState({ name: '', class_id: '', teacher_id: '' });
@@ -12,35 +13,35 @@ export default function SubjectManagement() {
   const headers = { Authorization: `Bearer ${token}` };
 
   const fetchAll = async () => {
-  try {
-    const [subjectRes, classRes, teacherRes] = await Promise.all([
-      axios.get('http://127.0.0.1:8000/api/subjects', { headers }),
-      axios.get('http://127.0.0.1:8000/api/classes', { headers }),
-      axios.get('http://127.0.0.1:8000/api/teachers', { headers }),
-    ]);
+    try {
+      const [subjectRes, classRes, teacherRes] = await Promise.all([
+        axios.get('http://127.0.0.1:8000/api/subjects', { headers }),
+        axios.get('http://127.0.0.1:8000/api/classes', { headers }),
+        axios.get('http://127.0.0.1:8000/api/teachers', { headers }),
+      ]);
 
-    const subjectList = Array.isArray(subjectRes.data)
-      ? subjectRes.data
-      : subjectRes.data.subjects || subjectRes.data.data || [];
+      const subjectList = Array.isArray(subjectRes.data)
+        ? subjectRes.data
+        : subjectRes.data.subjects || subjectRes.data.data || [];
 
-    const classList = Array.isArray(classRes.data)
-      ? classRes.data
-      : classRes.data.classes || classRes.data.data || [];
+      const classList = Array.isArray(classRes.data)
+        ? classRes.data
+        : classRes.data.classes || classRes.data.data || [];
 
-    const teacherList = Array.isArray(teacherRes.data)
-      ? teacherRes.data
-      : teacherRes.data.teachers || teacherRes.data.data || [];
+      const teacherList = Array.isArray(teacherRes.data)
+        ? teacherRes.data
+        : teacherRes.data.teachers || teacherRes.data.data || [];
 
-    setSubjects(subjectList);
-    setClasses(classList);
-    setTeachers(teacherList);
-  } catch (err) {
-    console.error('Fetch error:', err.response?.data || err.message);
-    setSubjects([]);
-    setClasses([]);
-    setTeachers([]);
-  }
-};
+      setSubjects(subjectList);
+      setClasses(classList);
+      setTeachers(teacherList);
+    } catch (err) {
+      console.error('Fetch error:', err.response?.data || err.message);
+      setSubjects([]);
+      setClasses([]);
+      setTeachers([]);
+    }
+  };
 
   useEffect(() => {
     fetchAll();
@@ -87,10 +88,10 @@ export default function SubjectManagement() {
   };
 
   return (
-    <div style={{ maxWidth: '700px', margin: 'auto' }}>
-      <h2>Subject Management</h2>
+    <div className="subject-management-container">
+      <h2 className="subject-title">📚 Subject Management</h2>
 
-      <form onSubmit={handleSubmit}>
+      <form className="subject-form" onSubmit={handleSubmit}>
         <input name="name" placeholder="Subject Name" value={form.name} onChange={handleChange} required />
         <select name="class_id" value={form.class_id} onChange={handleChange} required>
           <option value="">Select Class</option>
@@ -100,17 +101,17 @@ export default function SubjectManagement() {
           <option value="">Assign Teacher (optional)</option>
           {teachers.map(t => <option key={t.id} value={t.id}>{t.full_name}</option>)}
         </select>
-        <button type="submit">{editingId ? 'Update' : 'Create'} Subject</button>
+        <button type="submit" className="submit-button">{editingId ? 'Update' : 'Create'} Subject</button>
         {editingId && (
-          <button type="button" onClick={() => {
+          <button type="button" className="cancel-button" onClick={() => {
             setForm({ name: '', class_id: '', teacher_id: '' });
             setEditingId(null);
           }}>Cancel</button>
         )}
       </form>
 
-      <h3 style={{ marginTop: '2rem' }}>Subject List</h3>
-      <table border="1" cellPadding="8" style={{ width: '100%' }}>
+      <h3 className="subject-list-title">📋 Subject List</h3>
+      <table className="subject-table">
         <thead>
           <tr>
             <th>Name</th>
@@ -126,8 +127,8 @@ export default function SubjectManagement() {
               <td>{classes.find(c => c.id === s.class_id)?.name || '—'}</td>
               <td>{teachers.find(t => t.id === s.teacher_id)?.full_name || '—'}</td>
               <td>
-                <button onClick={() => handleEdit(s)}>Edit</button>
-                <button onClick={() => handleDelete(s.id)} style={{ marginLeft: '0.5rem', color: 'red' }}>Delete</button>
+                <button className="edit-button" onClick={() => handleEdit(s)}>Edit</button>
+                <button className="delete-button" onClick={() => handleDelete(s.id)}>Delete</button>
               </td>
             </tr>
           ))}
